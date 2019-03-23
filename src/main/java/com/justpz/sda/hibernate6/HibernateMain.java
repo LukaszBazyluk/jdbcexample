@@ -6,18 +6,21 @@ import org.hibernate.Transaction;
 
 public class HibernateMain {
     public static void main(String[] args) {
-        SessionFactory sessionFactory = SessionManager.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-//        Car car = new Car();
-//        car.setModel("Mondeo");
-//        car.setName("Ford");
-//        session.persist(car);
+        try (SessionFactory sessionFactory = SessionManager.getSessionFactory();
+             Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+        Car car1 = new Car();
+        car1.setModel("Mondeo");
+        car1.setName("Ford");
+        session.persist(car1);
 
-        Car car = session.find(Car.class, 1L);
-        System.out.println(car);
-        transaction.commit();
-        session.close();
-        sessionFactory.close();
+
+            Car car = session.find(Car.class, 1L);
+            System.out.println(car);
+            System.out.println(car.getClass());
+            car.setName("Tomcio");
+            transaction.commit();
+            sessionFactory.close();
+        }
     }
 }
