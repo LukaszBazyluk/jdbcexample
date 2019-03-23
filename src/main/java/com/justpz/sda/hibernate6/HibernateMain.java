@@ -9,11 +9,13 @@ public class HibernateMain {
         SessionFactory sessionFactory = SessionManager.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        Car car = new Car();
+//        Car car = new Car();
+//        car.setModel("Mondeo");
+//        car.setName("Ford");
+//        session.persist(car);
 
-        car.setModel("dupa");
-        car.setName("Fiat");
-        session.persist(car);
+        Car car = session.find(Car.class, 1L);
+        System.out.println(car);
         transaction.commit();
         session.close();
         sessionFactory.close();
