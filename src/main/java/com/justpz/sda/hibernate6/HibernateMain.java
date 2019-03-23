@@ -20,7 +20,6 @@ public class HibernateMain {
             System.out.println(car.getClass());
             car.setName("Tomcio");
             transaction.commit();
-            sessionFactory.close();
         }
     }
 }
