@@ -16,7 +16,7 @@ public class Hibernate_HQL {
             Transaction transaction = session.beginTransaction();
             String hqlQuery = "select s from Car s where s.name = :name";
             Query<Car> query = session.createQuery(hqlQuery, Car.class);
-            query.setParameter("name","Ferrari");
+            query.setParameter("name","Tomcio");
             List<Car>list = query.list();
             return list;
         }
