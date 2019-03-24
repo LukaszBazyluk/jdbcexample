@@ -2,7 +2,9 @@ package com.justpz.sda.hibernate6;
 
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Car {
@@ -11,10 +13,21 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "car_name")
-    private String name ;
-    private String model ;
+    private String name;
+    private String model;
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    private  Engine engine;
+    private Engine engine;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id")
+    private Set<Seat> seats;
+
+    public Set<Seat> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Set<Seat> seats) {
+        this.seats = seats;
+    }
 
     public Engine getEngine() {
 

@@ -4,7 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class HibernateMain {
     public static void main(String[] args) {
@@ -37,10 +39,10 @@ public class HibernateMain {
 //            car.setEngine(engine);
 //            session.merge(car);
 //            session.find(Engine.class, 1L);
-            Car car = session.find(Car.class, 1L);
-            System.out.println(car);
-            System.out.println(car.getEngine());
-           Transaction transaction = session.beginTransaction();
+//            Car car = session.find(Car.class, 1L);
+//            System.out.println(car);
+//            System.out.println(car.getEngine());
+            Transaction transaction = session.beginTransaction();
 //            Engine engine = new Engine();
 //            engine.setPower(140);
 //            session.persist(engine);
@@ -50,7 +52,28 @@ public class HibernateMain {
 //            car2.setModel("Mondeo");
 //            car2.setEngine(engine);
 
+            Car car = new Car();
+            car.setName("Porshe");
+            car.setModel("911");
 
+            Set<Seat> seatSet = new HashSet<>();
+            Seat e = new Seat();
+            e.setMaterial("lether");
+            e.setColor("black");
+            Seat e1 = new Seat();
+            e1.setMaterial("lether");
+            e1.setColor("red");
+            Seat e2 = new Seat();
+            e2.setMaterial("lether");
+            e2.setColor("blue");
+
+            seatSet.add(e);
+            seatSet.add(e1);
+            seatSet.add(e2);
+
+
+            car.setSeats(seatSet);
+            session.persist(car);
 
 
             transaction.commit();
