@@ -26,6 +26,7 @@
     <mapping class="com.justpz.sda.hibernate6.Car" />
     <mapping class="com.justpz.sda.hibernate6.Engine" />
     <mapping class="com.justpz.sda.hibernate6.Seat" />
+    <mapping class="com.justpz.sda.hibernate6.Person" />
     </session-factory>
 
 </hibernate-configuration>

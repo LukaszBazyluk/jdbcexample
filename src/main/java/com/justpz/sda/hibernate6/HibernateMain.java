@@ -56,24 +56,24 @@ public class HibernateMain {
             car.setName("Porshe");
             car.setModel("911");
 
-            Set<Seat> seatSet = new HashSet<>();
-            Seat e = new Seat();
-            e.setMaterial("lether");
-            e.setColor("black");
-            Seat e1 = new Seat();
-            e1.setMaterial("lether");
-            e1.setColor("red");
-            Seat e2 = new Seat();
-            e2.setMaterial("lether");
-            e2.setColor("blue");
+            Set<Person> owner = new HashSet<>();
+            Person  person1 = new Person();
+            person1.setName("Łukasz");
+            person1.setSurname("Bazyluk");
+//            person1.setMainCar(car);
 
-            seatSet.add(e);
-            seatSet.add(e1);
-            seatSet.add(e2);
+            Person person2 = new Person();
+            person2.setName("XYZ");
+            person2.setSurname("AAA");
+//            person2.setMainCar(car);
+
+            car.addOwner(person1);
+            car.addOwner(person2);
 
 
-            car.setSeats(seatSet);
+
             session.persist(car);
+
 
 
             transaction.commit();

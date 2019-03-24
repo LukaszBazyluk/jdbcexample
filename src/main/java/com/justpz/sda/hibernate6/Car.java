@@ -2,6 +2,7 @@ package com.justpz.sda.hibernate6;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -20,6 +21,23 @@ public class Car {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id")
     private Set<Seat> seats;
+    @OneToMany(mappedBy = "mainCar", cascade = CascadeType.PERSIST)
+    private Set<Person> owners = new HashSet<>();
+
+    public Set<Person> getOwners() {
+        return owners;
+    }
+
+    public void addOwner(Person owner){
+        owner.setMainCar(this);
+        owners.add(owner);
+    }
+
+
+
+    public void setOwners(Set<Person> owners) {
+        this.owners = owners;
+    }
 
     public Set<Seat> getSeats() {
         return seats;
