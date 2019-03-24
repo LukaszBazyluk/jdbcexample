@@ -1,12 +1,6 @@
-package hibernateg6;
+package com.justpz.sda.hibernate6;
 
-import com.justpz.sda.hibernate6.Car;
-import com.justpz.sda.hibernate6.CarReposytory;
-import com.justpz.sda.hibernate6.Hibernate_HQL;
-import com.justpz.sda.hibernate6.SessionManager;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -45,10 +39,11 @@ public class HibernateMain {
             for (Car car : all) {
                 System.out.println(car);
             }
-        } finally {
+            carRepository.changeMondeoModelToFord("Lambo");
             SessionManager.getSessionFactory().close();
-        }
+
 //    -------------------------------------------------------------------------------
+
+        }
     }
 }
-
