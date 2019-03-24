@@ -13,8 +13,16 @@ public class Car {
     @Column(name = "car_name")
     private String name ;
     private String model ;
+    @OneToOne
+    private  Engine engine;
 
+    public Engine getEngine() {
+        return engine;
+    }
 
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
 
     @Override
     public boolean equals(Object o) {

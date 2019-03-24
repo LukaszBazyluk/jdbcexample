@@ -13,7 +13,7 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sakila?serverTimezone=UTC&amp;useSSL=false</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">DUpadupa123!!</property>
-        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.use_sql_comments">true</property>
@@ -24,6 +24,7 @@
 
         <!--<mapping class="pl.sda.hibernate.Customer" />-->
     <mapping class="com.justpz.sda.hibernate6.Car" />
+    <mapping class="com.justpz.sda.hibernate6.Engine" />
     </session-factory>
 
 </hibernate-configuration>

@@ -8,8 +8,8 @@ import java.util.List;
 
 public class HibernateMain {
     public static void main(String[] args) {
-//                try (SessionFactory sessionFactory = SessionManager.getSessionFactory();
-//                     Session session = sessionFactory.openSession()) {
+        try (SessionFactory sessionFactory = SessionManager.getSessionFactory();
+             Session session = sessionFactory.openSession()) {
 //            Transaction transaction = session.beginTransaction();
 //            Car car1 = new Car();
 //            car1.setModel("Mondeo");
@@ -27,24 +27,35 @@ public class HibernateMain {
 //                System.out.println(queryXX);
 //            }
 //
-//
-//        } finally {
-//            SessionManager.getSessionFactory().close();
-//        }
+            Transaction transaction = session.beginTransaction();
+            Engine engine = new Engine();
+            engine.setPower(140);
+            session.persist(engine);
+
+            Car car = new Car();
+            car.setName("Ford");
+            car.setModel("Mondeo");
+            car.setEngine(engine);
+
+            session.persist(car);
+            transaction.commit();
+
+        } finally {
+            SessionManager.getSessionFactory().close();
+        }
 
 //        --------------------------------------------------------------------------
-        try (Session session = SessionManager.getSessionFactory().openSession()) {
-            CarReposytory carRepository = new CarReposytory();
-            List<Car> all = carRepository.finaAllFord();
-
-            for (Car car : all) {
-                System.out.println(car);
-            }
-            carRepository.changeMondeoModelToFord("Lambo");
-            SessionManager.getSessionFactory().close();
+//        try (Session session = SessionManager.getSessionFactory().openSession()) {
+//            CarReposytory carRepository = new CarReposytory();
+//            List<Car> all = carRepository.finaAllFord();
+//
+//            for (Car car : all) {
+//                System.out.println(car);
+//            }
+//            carRepository.changeMondeoModelToFord("Lambo");
+//            SessionManager.getSessionFactory().close();
 
 //    -------------------------------------------------------------------------------
 
-        }
     }
 }
