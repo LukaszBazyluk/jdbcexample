@@ -27,17 +27,32 @@ public class HibernateMain {
 //                System.out.println(queryXX);
 //            }
 //
-            Transaction transaction = session.beginTransaction();
-            Engine engine = new Engine();
-            engine.setPower(140);
-            session.persist(engine);
+//            Car car = new Car();
+//            car.setId(1L);
+//            car.setModel("A4");
+//            car.setName("Audi");
+//            Engine engine = new Engine();
+//            engine.setId(1L);
+//            engine.setPower(350);
+//            car.setEngine(engine);
+//            session.merge(car);
+//            session.find(Engine.class, 1L);
+            Car car = session.find(Car.class, 1L);
+            System.out.println(car);
+            System.out.println(car.getEngine());
+           Transaction transaction = session.beginTransaction();
+//            Engine engine = new Engine();
+//            engine.setPower(140);
+//            session.persist(engine);
+//
+//            Car car2 = new Car();
+//            car2.setName("Ford");
+//            car2.setModel("Mondeo");
+//            car2.setEngine(engine);
 
-            Car car = new Car();
-            car.setName("Ford");
-            car.setModel("Mondeo");
-            car.setEngine(engine);
 
-            session.persist(car);
+
+
             transaction.commit();
 
         } finally {

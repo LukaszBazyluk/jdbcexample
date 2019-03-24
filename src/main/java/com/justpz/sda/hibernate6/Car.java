@@ -13,7 +13,7 @@ public class Car {
     @Column(name = "car_name")
     private String name ;
     private String model ;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private  Engine engine;
 
     public Engine getEngine() {
