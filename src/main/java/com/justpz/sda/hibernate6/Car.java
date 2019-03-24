@@ -24,6 +24,7 @@ public class Car {
     @OneToMany(mappedBy = "mainCar", cascade = CascadeType.PERSIST)
     private Set<Person> owners = new HashSet<>();
 
+
     public Set<Person> getOwners() {
         return owners;
     }

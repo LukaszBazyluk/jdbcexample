@@ -67,12 +67,28 @@ public class HibernateMain {
             person2.setSurname("AAA");
 //            person2.setMainCar(car);
 
+
+
+//            session.persist(car);
+
+            Set<Address> addresses = new HashSet<>();
+            Address address = new Address();
+            address.setCity("Białystok");
+            address.setStreet("Błotna");
+
+                    Address address1 = new Address();
+            address1.setCity("NY");
+            address1.setStreet("III");
+
+
+            person1.addAddress(address);
+            person2.addAddress(address1);
+
             car.addOwner(person1);
             car.addOwner(person2);
 
-
-
             session.persist(car);
+
 
 
 

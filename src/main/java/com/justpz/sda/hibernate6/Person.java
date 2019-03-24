@@ -1,7 +1,10 @@
 package com.justpz.sda.hibernate6;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
 
 @Entity
 public class Person {
@@ -12,6 +15,20 @@ public class Person {
     private String surname;
     @ManyToOne
     private Car mainCar;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private Set<Address> addressSet = new HashSet<>();
+
+    public void addAddress(Address address){
+        addressSet.add(address);
+    }
+
+    public Set<Address> getAddressSet() {
+        return addressSet;
+    }
+
+    public void setAddressSet(Set<Address> addressSet) {
+        this.addressSet = addressSet;
+    }
 
     public Car getMainCar() {
         return mainCar;
@@ -43,21 +60,6 @@ public class Person {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return id == person.id &&
-                Objects.equals(name, person.name) &&
-                Objects.equals(surname, person.surname);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, surname);
     }
 
     public void add(Person owner) {
